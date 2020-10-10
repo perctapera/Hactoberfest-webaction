@@ -1,0 +1,22 @@
+name: deploying to github pages
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: html # The folder the action should deploy.
+        CLEAN: true
+
+      
